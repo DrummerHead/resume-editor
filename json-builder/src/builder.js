@@ -228,3 +228,5 @@ Builder.prototype.getFormValues = function() {
 	
 	return values;
 };
+
+module.exports = Builder;

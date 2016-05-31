@@ -113,8 +113,16 @@
   </div>
 
   <script>
-    require('./js/libs.min.js');
-    require('./json-builder/src/builder.js');
+    window.jQuery = window.$ = require('./js/libs/jquery.js');
+    require('./js/libs/jquery/bootstrap.js');
+    require('./js/libs/jquery/jquery-ui.js');
+    require('./js/libs/jquery/jquery.trackpad-scroll-emulator.js');
+    window.Handlebars = require('./js/libs/handlebars.runtime.js').Handlebars;
+    require('./js/libs/lodash.js');
+    require('./js/libs/lodash/backbone.js');
+    require('./js/libs/download.js');
+
+    window.Builder = require('./json-builder/src/builder.js');
     require('./json-builder/src/builder.templates.js');
     require('./js/main.js');
   </script>
