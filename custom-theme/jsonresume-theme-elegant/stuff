@@ -1,0 +1,18 @@
+function render(resume) {
+	return Handlebars.compile(template)({
+		css: css,
+		resume: magicFunction(resume)
+	});
+}
+
+
+
+getPicture: //get from picture url or from gravatar
+
+getProfile: //get from username or from url
+
+formatDate:
+
+getEndDate: // Given date or return Present
+
+getDuration: 

@@ -1,6 +1,8 @@
 // Global by intention.
 var builder;
 
+var template = require('../custom-theme/jsonresume-theme-elegant/index.js');
+
 jQuery(document).ready(function($) {
   var form = $("#form");
   builder = new Builder(form);
@@ -27,21 +29,30 @@ jQuery(document).ready(function($) {
   })();
 
   function postResume(data) {
-    var theme = "flat";
+    var theme = "elegant";
     var hash = window.location.hash;
+
     if (hash != "") {
       theme = hash.replace("#", "");
     }
-    $.ajax({
-      type: "POST",
-      contentType: "application/json",
-      data: JSON.stringify({resume: data}, null, "  "),
-      url: "http://themes.jsonresume.org/" + theme,
-      success: function(html) {
-        iframe.contents().find("body").html(html);
-        preview.removeClass("loading");
-      }
-    });
+
+    if (theme === "elegant") {
+      var html = template.render(data);
+      iframe.contents().find("body").html(html);
+      preview.removeClass("loading");
+    } else {
+      $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({resume: data}, null, "  "),
+        url: "http://themes.jsonresume.org/" + theme,
+        success: function(html) {
+          iframe.contents().find("body").html(html);
+          preview.removeClass("loading");
+        }
+      });
+    }
+
     (function toggleActive() {
       $("#theme-current").html(theme);
       var active = $("#themes-list .item[href='#" + theme + "']").addClass("active");
